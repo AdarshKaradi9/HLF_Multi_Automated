@@ -1,0 +1,33 @@
+.App {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    align-items: center;
+}
+
+.fill-window {
+  height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+
+.mdiv {
+  background-image: url(./images/blockchain.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}

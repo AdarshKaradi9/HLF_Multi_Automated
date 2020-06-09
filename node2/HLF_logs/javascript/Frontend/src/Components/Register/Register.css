@@ -1,0 +1,11 @@
+.register {
+    align-items: center;
+}
+.mdiv {
+    background-image: url(https://img5.goodfon.com/original/1920x950/e/10/blockchain-supplychain-rendering-shtefanlounge.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#buttonReg{
+    cursor: pointer;
+}
