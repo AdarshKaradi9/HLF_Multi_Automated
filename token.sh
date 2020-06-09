@@ -1,0 +1,1 @@
+    docker swarm join --token SWMTKN-1-4jr4voyyl90qtz44uavskj7mp0o9tlb1t1m1ufgfizo8xw9j2c-283iyotiywm3v9shfmftprsak 192.168.14.10:2377 --advertise-addr 192.168.14.11

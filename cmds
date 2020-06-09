@@ -1,0 +1,25 @@
+./bymn.sh generate -c mychan crypto-config.yaml
+
+./bymn.sh up -c mychan -s couchdb
+
+docker exec -it <cli_name> bash
+
+peer channel create -o orderer0:7050 -c mychan -f ./channel-artifacts/channel.tx --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer0.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+peer channel join -b mychan.block
+
+peer chaincode install -n myccc -v 1.0 -p github.com/chaincode/chaincode_example02/go
+
+peer chaincode instantiate -o orderer0:7050 -C mychan -n myccc -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "OR ('Org1MSP.member','Org2MSP.member')" --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer0.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+peer chaincode invoke -o orderer0:7050 -C mychannel -n myccc -c '{"Args":["invoke","a","b","10"]}' --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer0.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+	
+peer chaincode invoke -o orderer0.example.com:7050 --tls true --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer0.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C mychannel -n mycc -c '{"function":"initLedger","Args":[]}'
+
+
+peer chaincode query -C mychan -n myccc -c '{"Args":["query","a"]}'
+
+peer channel getinfo -c mychannel
+
+peer channel fetch 16  -c mychan --orderer orderer0.com:7050
+
